@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Onboarding | Croak Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #6B2D42;
+            --gold: #B8976A;
+            --cream: #F5F1EB;
+            --teal: #4A9A8C;
+            --dark: #1A1A2E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #FFFFFF 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(107, 45, 66, 0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #8B3D62 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(184, 151, 106, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 16px;
+            color: rgba(245, 241, 235, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-content {
+            padding: 50px 40px;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--burgundy);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        label .required {
+            color: var(--burgundy);
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E5E5E5;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(74, 154, 140, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--teal);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 40px 0;
+        }
+        
+        .submit-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--cream);
+            text-align: center;
+        }
+        
+        button[type="submit"] {
+            background: linear-gradient(135deg, var(--teal) 0%, #3A8A7C 100%);
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 154, 140, 0.3);
+        }
+        
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 154, 140, 0.4);
+        }
+        
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--teal) 0%, #3A8A7C 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 40px 30px;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .form-content {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Client Onboarding</h1>
+            <p>Personal Wealth Architects | Planning For All of Life's Crazy, Beautiful Moments</p>
+        </div>
+        
+        <div class="form-content">
+            <form id="onboardingForm">
+                <!-- Primary Contact Information -->
+                <div class="section-title">Primary Contact Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone <span class="required">*</span></label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="date" name="dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Social Security Number <span class="required">*</span></label>
+                        <input type="text" name="ssn" placeholder="XXX-XX-XXXX" required>
+                    </div>
+                </div>
+                
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Street Address <span class="required">*</span></label>
+                        <input type="text" name="streetAddress" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City <span class="required">*</span></label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>State <span class="required">*</span></label>
+                        <input type="text" name="state" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ZIP Code <span class="required">*</span></label>
+                        <input type="text" name="zipCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Marital Status <span class="required">*</span></label>
+                        <select name="maritalStatus" required>
+                            <option value="">Select...</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Domestic Partnership">Domestic Partnership</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Spouse/Partner Information -->
+                <div class="section-title">Spouse/Partner Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Spouse/Partner First Name</label>
+                        <input type="text" name="spouseFirstName">
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse/Partner Last Name</label>
+                        <input type="text" name="spouseLastName">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Spouse/Partner Email</label>
+                        <input type="email" name="spouseEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse/Partner Phone</label>
+                        <input type="tel" name="spousePhone">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Spouse/Partner Date of Birth</label>
+                        <input type="date" name="spouseDateOfBirth">
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse/Partner SSN</label>
+                        <input type="text" name="spouseSSN" placeholder="XXX-XX-XXXX">
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Employment Information -->
+                <div class="section-title">Employment Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Employment Status <span class="required">*</span></label>
+                        <select name="employmentStatus" required>
+                            <option value="">Select...</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Self-Employed">Self-Employed</option>
+                            <option value="Retired">Retired</option>
+                            <option value="Not Employed">Not Employed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Employer/Company</label>
+                        <input type="text" name="employer">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Job Title/Position</label>
+                        <input type="text" name="jobTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>Annual Income Range</label>
+                        <select name="incomeRange">
+                            <option value="">Select...</option>
+                            <option value="Under $100k">Under $100k</option>
+                            <option value="$100k - $250k">$100k - $250k</option>
+                            <option value="$250k - $500k">$250k - $500k</option>
+                            <option value="$500k - $1M">$500k - $1M</option>
+                            <option value="$1M+">$1M+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Financial Information -->
+                <div class="section-title">Financial Information</div>
+                
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Estimated Total Assets Under Management</label>
+                        <select name="estimatedAUM">
+                            <option value="">Select...</option>
+                            <option value="Under $500k">Under $500k</option>
+                            <option value="$500k - $1M">$500k - $1M</option>
+                            <option value="$1M - $2.5M">$1M - $2.5M</option>
+                            <option value="$2.5M - $5M">$2.5M - $5M</option>
+                            <option value="$5M - $10M">$5M - $10M</option>
+                            <option value="$10M+">$10M+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Current Custodians (check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="custodian" value="Schwab">
+                            <label>Charles Schwab</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="custodian" value="Fidelity">
+                            <label>Fidelity</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="custodian" value="TD Ameritrade">
+                            <label>TD Ameritrade</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="custodian" value="Vanguard">
+                            <label>Vanguard</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="custodian" value="Other">
+                            <label>Other</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Advisory Information -->
+                <div class="section-title">Advisory Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primary Advisor <span class="required">*</span></label>
+                        <select name="primaryAdvisor" required>
+                            <option value="">Select...</option>
+                            <option value="Tim">Tim</option>
+                            <option value="Sarah">Sarah</option>
+                            <option value="Jeremy">Jeremy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <select name="referralSource">
+                            <option value="">Select...</option>
+                            <option value="Client Referral">Client Referral</option>
+                            <option value="Professional Referral">Professional Referral (CPA/Attorney)</option>
+                            <option value="Website">Website</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Event">Event/Seminar</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Communication Preferences (check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="commPref" value="Email">
+                            <label>Email</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="commPref" value="Phone">
+                            <label>Phone</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="commPref" value="Text">
+                            <label>Text Message</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="commPref" value="Portal">
+                            <label>Client Portal</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Planning Priorities -->
+                <div class="section-title">Planning Priorities</div>
+                
+                <div class="form-group">
+                    <label>Top Financial Goals (select up to 3)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Retirement Planning">
+                            <label>Retirement Planning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Tax Optimization">
+                            <label>Tax Optimization</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Estate Planning">
+                            <label>Estate Planning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Education Funding">
+                            <label>Education Funding</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Business Succession">
+                            <label>Business Succession Planning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Charitable Giving">
+                            <label>Charitable Giving Strategy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="goals" value="Risk Management">
+                            <label>Risk Management/Insurance</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Notes or Concerns</label>
+                    <textarea name="additionalNotes" placeholder="Share any specific concerns, questions, or information you'd like us to know..."></textarea>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Professional Advisors -->
+                <div class="section-title">Professional Advisors</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CPA/Accountant Name</label>
+                        <input type="text" name="cpaName">
+                    </div>
+                    <div class="form-group">
+                        <label>CPA Firm</label>
+                        <input type="text" name="cpaFirm">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Attorney Name</label>
+                        <input type="text" name="attorneyName">
+                    </div>
+                    <div class="form-group">
+                        <label>Attorney Firm</label>
+                        <input type="text" name="attorneyFirm">
+                    </div>
+                </div>
+                
+                <div class="submit-section">
+                    <button type="submit">Submit Onboarding Information</button>
+                    <div class="success-message" id="successMessage">
+                        ✓ Thank you! Your information has been submitted successfully. We'll be in touch soon.
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('onboardingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            // Convert FormData to object, handling checkboxes
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Add timestamp
+            data.submissionDate = new Date().toISOString();
+            
+            try {
+                // Send to Google Apps Script endpoint
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzQ4PxyH5U5wIZWXZDPe8mFG8nPUI8afguoBPdw4Z-gCJIghHc1KSuJCXqDlsAibyLi/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                e.target.reset();
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your information. Please try again or contact us directly.');
+            }
+        });
+    </script>
+</body>
+</html>
