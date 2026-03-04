@@ -887,7 +887,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Cell Phone Type</label>
+                        <label>Current Personal Cell Phone</label>
                         <select name="personalCellType">
                             <option value="">Select...</option>
                             <option value="iPhone">iPhone</option>
@@ -906,7 +906,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Docking Station Needed <span class="required-indicator">*</span></label>
+                        <label>Docking Station <span class="required-indicator">*</span></label>
                         <select name="dockingStation" required>
                             <option value="Yes" selected>Yes</option>
                             <option value="No">No</option>
@@ -917,11 +917,10 @@
 
                 <div class="form-row three-col">
                     <div class="form-group">
-                        <label>Number of Monitors <span class="required-indicator">*</span></label>
+                        <label>Monitors <span class="required-indicator">*</span></label>
                         <select name="monitors" required>
-                            <option value="">Select...</option>
+                            <option value="1" selected>1</option>
                             <option value="0">0</option>
-                            <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
                     </div>
@@ -974,8 +973,8 @@
 
                 <div class="form-row two-col">
                     <div class="form-group">
-                        <label>4 Digit Security Code Alarm</label>
-                        <input type="text" name="alarmCode" placeholder="4 digit code" maxlength="4">
+                        <label>4 Digit Security Code Alarm <span class="required-indicator">*</span></label>
+                        <input type="text" name="alarmCode" placeholder="4 digit code" maxlength="4" required>
                     </div>
                 </div>
             </div>
@@ -1225,8 +1224,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Ohio State or Michigan? <span class="optional">(Important cultural question)</span></label>
-                    <select name="osuMichigan">
+                    <label>Ohio State or Michigan? <span class="required-indicator">*</span></label>
+                    <select name="osuMichigan" required>
                         <option value="">Select...</option>
                         <option value="OSU">OSU</option>
                         <option value="UM">UM</option>
